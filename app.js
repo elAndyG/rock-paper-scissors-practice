@@ -26,30 +26,48 @@ function main() {
     userScore++;
     userScore_span.innerHTML = userScore;
     computerScore_span.innerHTML = computerScore;
+    const userChoice_div = document.getElementById(userChoice);
     const user = ' 😎'.fontsize(3).sup();
     const computer = ' 🤖'.fontsize(3).sup();
     result_p.innerHTML = `${convertToWord(userChoice)}${user} beats ${convertToWord(
       computerChoice
     )}${computer}. You win! 🥳`;
+
+    userChoice_div.classList.add('green-glow');
+    setTimeout(() => {
+      userChoice_div.classList.remove('green-glow');
+    }, 1000);
   }
 
   function lose(userChoice, computerChoice) {
     computerScore++;
     userScore_span.innerHTML = userScore;
     computerScore_span.innerHTML = computerScore;
+    const userChoice_div = document.getElementById(userChoice);
     const user = ' 😎'.fontsize(3).sup();
     const computer = ' 🤖'.fontsize(3).sup();
     result_p.innerHTML = `${convertToWord(computerChoice)}${computer} beats ${convertToWord(
       userChoice
     )}${user}. You lose! 💩`;
+
+    userChoice_div.classList.add('red-glow');
+    setTimeout(() => {
+      userChoice_div.classList.remove('red-glow');
+    }, 1000);
   }
 
   function draw(userChoice, computerChoice) {
     const user = ' 😎'.fontsize(3).sup();
     const computer = ' 🤖'.fontsize(3).sup();
+    const userChoice_div = document.getElementById(userChoice);
     result_p.innerHTML = `${convertToWord(userChoice)}${user} matched ${convertToWord(
       computerChoice
     )}${computer}. It's a draw! `;
+
+    userChoice_div.classList.add('gray-glow');
+    setTimeout(() => {
+      userChoice_div.classList.remove('gray-glow');
+    }, 1000);
   }
 
   function game(userChoice) {
@@ -63,7 +81,7 @@ function main() {
       case 'rr':
       case 'pp':
       case 'ss':
-        draw();
+        draw(userChoice, computerChoice);
         break;
       case 'sr':
       case 'rp':
