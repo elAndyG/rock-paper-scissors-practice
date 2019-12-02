@@ -22,52 +22,46 @@ function main() {
     return 'Scissors';
   }
 
+  function visuallyNotifyChoice(userChoice, colorClass) {
+    const userChoice_div = document.getElementById(userChoice);
+    userChoice_div.classList.add(colorClass);
+    setTimeout(() => userChoice_div.classList.remove(colorClass), 1000);
+  }
+
   function win(userChoice, computerChoice) {
     userScore++;
     userScore_span.innerHTML = userScore;
     computerScore_span.innerHTML = computerScore;
-    const userChoice_div = document.getElementById(userChoice);
     const user = ' 😎'.fontsize(3).sup();
     const computer = ' 🤖'.fontsize(3).sup();
     result_p.innerHTML = `${convertToWord(userChoice)}${user} beats ${convertToWord(
       computerChoice
     )}${computer}. You win! 🥳`;
 
-    userChoice_div.classList.add('green-glow');
-    setTimeout(() => {
-      userChoice_div.classList.remove('green-glow');
-    }, 1000);
+    visuallyNotifyChoice(userChoice, 'green-glow');
   }
 
   function lose(userChoice, computerChoice) {
     computerScore++;
     userScore_span.innerHTML = userScore;
     computerScore_span.innerHTML = computerScore;
-    const userChoice_div = document.getElementById(userChoice);
     const user = ' 😎'.fontsize(3).sup();
     const computer = ' 🤖'.fontsize(3).sup();
     result_p.innerHTML = `${convertToWord(computerChoice)}${computer} beats ${convertToWord(
       userChoice
     )}${user}. You lose! 💩`;
 
-    userChoice_div.classList.add('red-glow');
-    setTimeout(() => {
-      userChoice_div.classList.remove('red-glow');
-    }, 1000);
+    visuallyNotifyChoice(userChoice, 'red-glow');
   }
 
   function draw(userChoice, computerChoice) {
     const user = ' 😎'.fontsize(3).sup();
     const computer = ' 🤖'.fontsize(3).sup();
-    const userChoice_div = document.getElementById(userChoice);
     result_p.innerHTML = `${convertToWord(userChoice)}${user} matched ${convertToWord(
       computerChoice
     )}${computer}. It's a draw! `;
 
-    userChoice_div.classList.add('gray-glow');
-    setTimeout(() => {
-      userChoice_div.classList.remove('gray-glow');
-    }, 1000);
+    visuallyNotifyChoice(userChoice, 'gray-glow');
   }
 
   function game(userChoice) {
@@ -91,17 +85,11 @@ function main() {
     }
   }
 
-  rock_div.addEventListener('click', function() {
-    game('r');
-  });
+  rock_div.addEventListener('click', () => game('r'));
 
-  paper_div.addEventListener('click', function() {
-    game('p');
-  });
+  paper_div.addEventListener('click', () => game('p'));
 
-  scissors_div.addEventListener('click', function() {
-    game('s');
-  });
+  scissors_div.addEventListener('click', () => game('s'));
 }
 
 main();
