@@ -1,4 +1,4 @@
-# tic-tac-toe-practice
+# rock-paper-scissors-practice
 
 The purpose of this repository is to exercice html, css and js.
 
